@@ -1,0 +1,34 @@
+### CREAR CLIENTE JURIDICO
+POST http://localhost:3000/api/clientesJuridicos
+Content-Type: application/json
+
+{
+    "nombre": "Representaciones Nataly S.A.C",
+    "ruc": "20600007522",
+    "direccion": "Av. Aviacion 721",
+    "telefono": "4746922",
+    "celular": "915115894",
+    "correo": "representacionesnataly@gmail.com"
+}
+
+### OBTENER TODOS LOS CLIENTES JURIDICOS
+GET http://localhost:3000/api/clientesJuridicos
+
+### OBTENER CLIENTE JURIDICO POR ID
+GET http://localhost:3000/api/clientesJuridicos/1
+
+### ACTUALIZAR CLIENTE JURIDICO POR ID
+PUT http://localhost:3000/api/clientesJuridicos/1
+Content-Type: application/json
+
+{
+    "nombre": "Representaciones Nataly S.A.C actualizado",
+    "ruc": "20600007522",
+    "direccion": "Av. Aviacion 721",
+    "telefono": "4746922",
+    "celular": "915115894",
+    "correo": "representacionesnataly@gmail.com"
+}
+
+### ELIMINAR CLIENTE JURIDICO POR ID
+DELETE  http://localhost:3000/api/clientesJuridicos/1

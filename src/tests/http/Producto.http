@@ -1,0 +1,22 @@
+### OBTENER TODOS LOS PRODUCTOS
+GET http://localhost:3000/api/productos
+
+### OBTENER PRODUCTO POR ID
+GET http://localhost:3000/api/productos/1
+
+### ACTUALIZAR PRODUCTO POR ID
+PUT http://localhost:3000/api/productos/1
+Content-Type: application/json
+
+{
+    "nombre": "Harina Anita x 50 Kg actualizado",
+    "precioCosto": 100,
+    "precioVenta": 200,
+    "stock": 100,
+    "categoriaId": 1,
+    "marcaId": 1,
+    "imagenProductoId": 1
+}
+
+### ELIMINAR PRODUCTO POR ID
+DELETE  http://localhost:3000/api/productos/1

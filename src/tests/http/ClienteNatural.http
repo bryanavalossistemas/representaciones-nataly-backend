@@ -1,0 +1,31 @@
+### CREAR CLIENTE NATURAL
+POST http://localhost:3000/api/clientesNaturales
+Content-Type: application/json
+
+{
+    "nombre": "Bryan Avalos Loa y Pardo",
+    "dni": "75013015",
+    "direccion": "Av. Aviacion 721",
+    "celular": "915115894",
+    "correo": "bryanavalossistemas@gmail.com"
+}
+
+### OBTENER TODOS LOS CLIENTES NATURALES
+GET http://localhost:3000/api/clientesNaturales
+
+### OBTENER CLIENTE NATURAL POR ID
+GET http://localhost:3000/api/clientesNaturales/1
+
+### ACTUALIZAR CLIENTE NATURAL POR ID
+PUT http://localhost:3000/api/clientesNaturales/1
+Content-Type: application/json
+
+{
+    "nombre": "Bryan Avalos Loa y Pardo actualizado",
+    "dni": "75013015",
+    "celular": "915115894",
+    "correo": "bryanavalossistemas@gmail.com"
+}
+
+### ELIMINAR CLIENTE NATURAL POR ID
+DELETE  http://localhost:3000/api/clientesNaturales/1

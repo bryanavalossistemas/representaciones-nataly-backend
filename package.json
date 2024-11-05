@@ -1,17 +1,30 @@
 {
-  "name": "backend",
+  "name": "loaypardo-system-backend",
   "version": "1.0.0",
   "description": "Backend",
   "main": "index.js",
-  "type": "module",
+	"type": "commonjs",
   "scripts": {
-    "dev": "node --watch src/index.js",
+    "dev": "node --watch -r dotenv/config -r module-alias/register src/index.js",
+    "db:seed": "node -r dotenv/config -r module-alias/register src/scripts/seed.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/index.js"
+    "start": "node -r module-alias/register src/index.js"
+  },
+  "_moduleAliases": {
+    "@": "src",
+    "@/config": "src/config",
+    "@/controllers": "src/controllers",
+    "@/middlewares": "src/middlewares",
+    "@/models": "src/models",
+    "@/routes": "src/routes",
+    "@/services": "src/services",
+    "@/tests": "src/tests",
+    "@/utils": "src/utils",
+    "@/validations": "src/validations"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bryanavalossistemas/rn-system-backend.git"
+    "url": "https://github.com/bryanavalossistemas/loaypardo-system-backend"
   },
   "keywords": [
     "backend"
@@ -19,18 +32,20 @@
   "author": "Bryan Avalos Loa y Pardo Jesus",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/bryanavalossistemas/rn-system-backend/issues"
+    "url": "https://github.com/bryanavalossistemas/loaypardo-system-backend/issues"
   },
-  "homepage": "https://github.com/bryanavalossistemas/rn-system-backend#readme",
+  "homepage": "https://github.com/bryanavalossistemas/loaypardo-system-backend#readme",
   "dependencies": {
-    "bcrypt": "^5.1.1",
-    "jsonwebtoken": "^9.0.2",
+    "cloudinary": "^2.5.1",
     "cors": "^2.8.5",
     "express": "^4.21.0",
+    "express-validator": "^7.2.0",
+    "jsonwebtoken": "^9.0.2",
+    "module-alias": "^2.2.3",
+    "multer": "^1.4.5-lts.1",
+    "pdfkit": "^0.15.1",
     "pg": "^8.13.0",
-    "sequelize": "^6.37.4",
-    "cloudinary": "^2.2.0",
-    "multer": "^1.4.5-lts.1"
+    "sequelize": "^6.37.4"
   },
   "devDependencies": {
     "colors": "^1.4.0",

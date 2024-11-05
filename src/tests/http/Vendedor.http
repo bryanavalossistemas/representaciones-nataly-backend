@@ -1,0 +1,36 @@
+### CREAR VENDEDOR
+POST http://localhost:3000/api/vendedores
+Content-Type: application/json
+
+{
+    "nombre": "Leonardo Jauregui",
+    "username": "vendedor",
+    "password": "vendedor",
+    "dni": "75013015",
+    "telefono": "4746922",
+    "celular": "915115894",
+    "correo": "leonardo@gmail.com"
+}
+
+### OBTENER TODOS LOS VENDEDORES
+GET http://localhost:3000/api/vendedores
+
+### OBTENER VENDEDOR POR ID
+GET http://localhost:3000/api/vendedores/1
+
+### ACTUALIZAR VENDEDOR POR ID
+PUT http://localhost:3000/api/vendedores/1
+Content-Type: application/json
+
+{
+    "nombre": "Leonardo Jauregui act",
+    "username": "vendedor",
+    "password": "vendedor",
+    "dni": "75013015",
+    "telefono": "4746922",
+    "celular": "915115894",
+    "correo": "leonardo@gmail.com"
+}
+
+### ELIMINAR VENDEDOR POR ID
+DELETE  http://localhost:3000/api/vendedores/2

@@ -1,0 +1,24 @@
+### CREAR MARCA
+POST http://localhost:3000/api/marcas
+Content-Type: application/json
+
+{
+    "nombre": "Anita"
+}
+
+### OBTENER TODAS LAS MARCAS
+GET http://localhost:3000/api/marcas
+
+### OBTENER MARCA POR ID
+GET http://localhost:3000/api/marcas/1
+
+### ACTUALIZAR MARCA POR ID
+PUT http://localhost:3000/api/marcas/1
+Content-Type: application/json
+
+{
+     "nombre": "Anita actualizado"
+}
+
+### ELIMINAR MARCA POR ID
+DELETE  http://localhost:3000/api/marcas/1

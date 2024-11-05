@@ -1,0 +1,24 @@
+### CREAR CATEGORIA
+POST http://localhost:3000/api/categorias
+Content-Type: application/json
+
+{
+    "nombre": "Harina"
+}
+
+### OBTENER TODAS LAS CATEGORIAS
+GET http://localhost:3000/api/categorias
+
+### OBTENER CATEGORIA POR ID
+GET http://localhost:3000/api/categorias/1
+
+### ACTUALIZAR CATEGORIA POR ID
+PUT http://localhost:3000/api/categorias/1
+Content-Type: application/json
+
+{
+     "nombre": "Harina actualizado"
+}
+
+### ELIMINAR CATEGORIA POR ID
+DELETE  http://localhost:3000/api/categorias/1

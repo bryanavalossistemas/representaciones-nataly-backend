@@ -1,0 +1,32 @@
+### CREAR VENTA
+POST http://localhost:3000/api/ventas
+Content-Type: application/json
+
+{
+    "clienteId": 1,
+    "detallesVenta": [
+        {"cantidad": 3, "precioVenta": 200, "productoId": 1},
+        {"cantidad": 3, "precioVenta": 300, "productoId": 2}
+    ]
+}
+
+### OBTENER TODAS LAS VENTAS
+GET http://localhost:3000/api/ventas
+
+### OBTENER VENTA POR ID
+GET http://localhost:3000/api/ventas/1
+
+### ACTUALIZAR VENTA POR ID
+PUT http://localhost:3000/api/ventas/1
+Content-Type: application/json
+
+{
+    "clienteId": 1,
+    "detallesVenta": [
+        {"id": 1, "cantidad": 10, "precioVenta": 125, "productoId": 1},
+        {"id": 2, "cantidad": 10, "precioVenta": 275, "productoId": 2}
+    ]
+}
+
+### ELIMINAR VENTA POR ID
+DELETE  http://localhost:3000/api/ventas/1

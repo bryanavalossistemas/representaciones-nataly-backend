@@ -1,0 +1,32 @@
+### CREAR COMPRA
+POST http://localhost:3000/api/compras
+Content-Type: application/json
+
+{
+    "proveedorId": 1,
+    "detallesCompra": [
+        {"cantidad": 100, "precioCosto": 250, "productoId": 1},
+        {"cantidad": 100, "precioCosto": 350, "productoId": 2}
+    ]
+}
+
+### OBTENER TODAS LAS COMPRAS
+GET http://localhost:3000/api/compras
+
+### OBTENER COMPRA POR ID
+GET http://localhost:3000/api/compras/1
+
+### ACTUALIZAR COMPRA POR ID
+PUT http://localhost:3000/api/compras/1
+Content-Type: application/json
+
+{
+    "proveedorId": 1,
+    "detallesCompra": [
+        {"id": 1, "cantidad": 100, "precioCosto": 200, "productoId": 1},
+        {"id": 2, "cantidad": 100, "precioCosto": 400, "productoId": 2}
+    ]
+}
+
+### ELIMINAR COMPRA POR ID
+DELETE  http://localhost:3000/api/compras/1

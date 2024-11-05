@@ -1,26 +1,20 @@
-import app from "./app.js";
-import colors from "colors";
-import sequelize from "./configuraciones/BaseDeDatos.js";
+const { connectDB } = require("@/config/db");
+const app = require("@/app");
+const colors = require("colors");
 
-// Funcion principal
 async function main() {
   try {
-    const init = process.argv[2];
+    await connectDB();
 
-    if (init) await sequelize.sync({ force: true });
-    else await sequelize.sync({ force: false });
-
-    console.log(colors.blue.bold("CONEXIÓN EXITOSA A LA BASE DE DATOS"));
-
-    const port = process.env.PORT || 4000;
+    const port = process.env.PORT || 3000;
 
     app.listen(port, () => {
       console.log(
         colors.cyan.bold(`SERVIDOR FUNCIONANDO EN EL PUERTO ${port}`)
       );
     });
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(colors.red.bold(error.message));
   }
 }
 
