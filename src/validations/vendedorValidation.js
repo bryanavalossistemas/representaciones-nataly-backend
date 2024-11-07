@@ -9,22 +9,22 @@ const createValidation = [
     .trim()
     .notEmpty()
     .withMessage("El nombre no puede ser una cadena vacía."),
-  body("username")
+  body("correo")
     .exists()
-    .withMessage("El username es requerido.")
+    .withMessage("El correo es requerido.")
     .isString()
-    .withMessage("El username debe ser una cadena.")
+    .withMessage("El correo debe ser una cadena.")
     .trim()
     .notEmpty()
-    .withMessage("El username no puede ser una cadena vacía."),
-  body("password")
+    .withMessage("El correo no puede ser una cadena vacía."),
+  body("contrasenia")
     .exists()
-    .withMessage("El password es requerido.")
+    .withMessage("La contrasenia es requerida.")
     .isString()
-    .withMessage("El password debe ser una cadena.")
+    .withMessage("La contrasenia debe ser una cadena.")
     .trim()
     .notEmpty()
-    .withMessage("El password no puede ser una cadena vacía."),
+    .withMessage("La contrasenia no puede ser una cadena vacía."),
   body("dni")
     .exists()
     .withMessage("El dni es requerido.")
@@ -50,7 +50,6 @@ const createValidation = [
     .withMessage(
       "El celular debe ser una cadena con exactamente 9 dígitos numéricos."
     ),
-  body("correo").optional().isEmail().withMessage("El correo no es válido."),
 ];
 
 const updateValidation = [
@@ -61,20 +60,20 @@ const updateValidation = [
     .trim()
     .notEmpty()
     .withMessage("El nombre no puede ser una cadena vacía."),
-  body("username")
+  body("correo")
     .optional()
     .isString()
-    .withMessage("El username debe ser una cadena.")
+    .withMessage("El correo debe ser una cadena.")
     .trim()
     .notEmpty()
-    .withMessage("El username no puede ser una cadena vacía."),
-  body("password")
+    .withMessage("El correo no puede ser una cadena vacía."),
+  body("contrasenia")
     .optional()
     .isString()
-    .withMessage("El password debe ser una cadena.")
+    .withMessage("La contrasenia debe ser una cadena.")
     .trim()
     .notEmpty()
-    .withMessage("El password no puede ser una cadena vacía."),
+    .withMessage("La contrasenia no puede ser una cadena vacía."),
   body("dni")
     .optional()
     .isString()
@@ -99,7 +98,6 @@ const updateValidation = [
     .withMessage(
       "El celular debe ser una cadena con exactamente 9 dígitos numéricos."
     ),
-  body("correo").optional().isEmail().withMessage("El correo no es válido."),
 ];
 
 module.exports = { createValidation, updateValidation };

@@ -13,6 +13,10 @@ const authorize = require("@/middlewares/authorizeMiddleware");
 
 const router = express.Router();
 
+router.route("/public").get(productoController.getAllPublic);
+
+router.route("/:id/public").get(validateId, productoController.getByIdPublic);
+
 router.use(authenticate, authorize({ rolesId: [1] }));
 
 router
@@ -25,6 +29,7 @@ router
     imagesExists,
     productoController.create
   );
+
 router
   .route("/:id")
   .get(validateId, productoController.getById)

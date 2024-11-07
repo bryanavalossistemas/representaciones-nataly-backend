@@ -37,12 +37,28 @@ class ProductoController {
     });
   });
 
+	getAllPublic = asyncHandler(async (req, res) => {
+    return res.status(200).json({
+      success: true,
+      data: await productoService.getAllPublic(),
+    });
+  });
+
   getById = asyncHandler(async (req, res) => {
     const { id } = req.params;
 
     return res.status(200).json({
       success: true,
       data: await productoService.getById({ id }),
+    });
+  });
+
+	getByIdPublic = asyncHandler(async (req, res) => {
+    const { id } = req.params;
+
+    return res.status(200).json({
+      success: true,
+      data: await productoService.getByIdPublic({ id }),
     });
   });
 

@@ -1,27 +1,19 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("@/config/db");
 
-const Usuario = sequelize.define(
-  "Usuario",
+const Distrito = sequelize.define(
+  "Distrito",
   {
     id: {
-      allowNull: false,
-      autoIncrement: true,
-      primaryKey: true,
       type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+      allowNull: false,
     },
-    correo: {
+    nombre: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-    },
-    contrasenia: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    rolId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
     },
   },
   {
@@ -33,4 +25,4 @@ const Usuario = sequelize.define(
   }
 );
 
-module.exports = Usuario;
+module.exports = Distrito;

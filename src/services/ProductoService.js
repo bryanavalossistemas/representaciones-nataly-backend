@@ -101,8 +101,49 @@ class ProductoService {
     });
   }
 
+  async getAllPublic() {
+    return await Producto.findAll({
+      attributes: ["id", "nombre", "descripcion", "precioVenta", "stock"],
+      include: [
+        { model: Categoria, as: "categoria" },
+        { model: Marca, as: "marca" },
+        {
+          model: ImagenProducto,
+          as: "imagenesProducto",
+          attributes: ["id", "url"],
+        },
+      ],
+    });
+  }
+
   async getById({ id }) {
     const producto = await Producto.findByPk(id, {
+      include: [
+        {
+          model: ImagenProducto,
+          as: "imagenesProducto",
+        },
+      ],
+    });
+    if (!producto) {
+      throw {
+        message: "Error de recurso no encontrado",
+        statusCode: 404,
+        errors: [
+          {
+            message: "Producto no encontrado.",
+            path: "id",
+          },
+        ],
+      };
+    }
+
+    return producto;
+  }
+
+  async getByIdPublic({ id }) {
+    const producto = await Producto.findByPk(id, {
+      attributes: ["id", "nombre", "descripcion", "precioVenta", "stock"],
       include: [
         {
           model: ImagenProducto,

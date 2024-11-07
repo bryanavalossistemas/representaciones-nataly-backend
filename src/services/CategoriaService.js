@@ -1,4 +1,4 @@
-const { Categoria } = require("@/models");
+const { Categoria, Producto, ImagenProducto } = require("@/models");
 
 class CategoriaService {
   async create({ nombre }) {
@@ -32,6 +32,41 @@ class CategoriaService {
 
   async getById({ id }) {
     const categoria = await Categoria.findByPk(id);
+
+    if (!categoria) {
+      throw {
+        message: "Error de recurso no encontrado",
+        statusCode: 404,
+        errors: [
+          {
+            message: "Categoría no encontrada.",
+            path: "id",
+          },
+        ],
+      };
+    }
+
+    return categoria;
+  }
+
+  async getByIdPublic({ id }) {
+    const categoria = await Categoria.findByPk(id, {
+      attributes: ["id", "nombre"],
+      include: [
+        {
+          model: Producto,
+          as: "productos",
+					attributes: ["id", "nombre", "precioVenta"],
+					include: [
+						{
+							model: ImagenProducto,
+							as: "imagenesProducto",
+							attributes: ["id", "url"],
+						},
+					],
+        },
+      ],
+    });
 
     if (!categoria) {
       throw {

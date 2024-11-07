@@ -2,8 +2,8 @@ const { DataTypes } = require("sequelize");
 const { sequelize } = require("@/config/db");
 const Usuario = require("./Usuario");
 
-const Vendedor = sequelize.define(
-  "Vendedor",
+const Comprador = sequelize.define(
+  "Comprador",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -14,18 +14,6 @@ const Vendedor = sequelize.define(
     nombre: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    dni: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    celular: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    telefono: {
-      type: DataTypes.STRING,
-      allowNull: true,
     },
     usuarioId: {
       type: DataTypes.INTEGER,
@@ -45,4 +33,4 @@ const Vendedor = sequelize.define(
   }
 );
 
-module.exports = Vendedor;
+module.exports = Comprador;

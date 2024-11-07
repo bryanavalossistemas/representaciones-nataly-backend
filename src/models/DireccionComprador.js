@@ -1,9 +1,10 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("@/config/db");
-const Usuario = require("./Usuario");
+const Comprador = require("./Comprador");
+const Distrito = require("./Distrito");
 
-const Vendedor = sequelize.define(
-  "Vendedor",
+const DireccionComprador = sequelize.define(
+  "DireccionComprador",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -15,34 +16,42 @@ const Vendedor = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    dni: {
+		apellido: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    celular: {
+		direccion: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
-    telefono: {
+		celular: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
-    usuarioId: {
+		distritoId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: Usuario,
+        model: Distrito,
+        key: "id",
+      },
+    },
+    compradorId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: Comprador,
         key: "id",
       },
     },
   },
   {
-    freezeTableName: true,
     timestamps: false,
+    freezeTableName: true,
     defaultScope: {
       order: [["id", "DESC"]],
     },
   }
 );
 
-module.exports = Vendedor;
+module.exports = DireccionComprador;

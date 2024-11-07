@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Backend",
   "main": "index.js",
-	"type": "commonjs",
+  "type": "commonjs",
   "scripts": {
     "dev": "node --watch -r dotenv/config -r module-alias/register src/index.js",
     "db:seed": "node -r dotenv/config -r module-alias/register src/scripts/seed.js",
@@ -45,7 +45,7 @@
     "multer": "^1.4.5-lts.1",
     "pdfkit": "^0.15.1",
     "pg": "^8.13.0",
-    "sequelize": "^6.37.4"
+		"sequelize": "^5.22.5"
   },
   "devDependencies": {
     "colors": "^1.4.0",

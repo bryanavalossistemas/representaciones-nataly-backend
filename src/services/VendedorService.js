@@ -1,21 +1,21 @@
 const { Vendedor, Usuario } = require("@/models");
 
 class VendedorService {
-  async create({ nombre, username, password, dni, telefono, celular, correo }) {
+  async create({ nombre, correo, contrasenia, dni, celular, telefono }) {
     let errors = [];
 
-    const usuarioExists = await Usuario.findOne({
-      where: { username },
+    const usuarioWithCorreoExists = await Usuario.findOne({
+      where: { correo },
     });
-    if (usuarioExists) {
+    if (usuarioWithCorreoExists) {
       errors.push({
-        message: "El nombre de usuario ya está en uso.",
-        path: "username",
+        message: "El correo ya está en uso.",
+        path: "correo",
       });
     }
 
-    const vendedorExists = await Vendedor.findOne({ where: { dni } });
-    if (vendedorExists) {
+    const vendedorWithDNIExists = await Vendedor.findOne({ where: { dni } });
+    if (vendedorWithDNIExists) {
       errors.push({
         message: "El dni ya está en uso.",
         path: "dni",
@@ -31,17 +31,16 @@ class VendedorService {
     }
 
     const usuario = await Usuario.create({
-      nombre,
-      username,
-      password,
+      correo,
+      contrasenia,
       rolId: 2,
     });
 
     const vendedor = await Vendedor.create({
+      nombre,
       dni,
-      telefono,
       celular,
-      correo,
+      telefono,
       usuarioId: usuario.id,
     });
 
@@ -75,16 +74,7 @@ class VendedorService {
     return vendedor;
   }
 
-  async update({
-    id,
-    nombre,
-    username,
-    password,
-    dni,
-    telefono,
-    celular,
-    correo,
-  }) {
+  async update({ id, correo, contrasenia, nombre, dni, celular, telefono }) {
     let errors = [];
 
     const vendedor = await Vendedor.findByPk(id);
@@ -101,19 +91,24 @@ class VendedorService {
       };
     }
 
-    if (username) {
-      const usuarioExists = await Usuario.findOne({ where: { username } });
-      if (usuarioExists && usuarioExists.id !== vendedor.usuarioId) {
+    if (correo) {
+      const usuarioWithCorreoExists = await Usuario.findOne({
+        where: { correo },
+      });
+      if (
+        usuarioWithCorreoExists &&
+        usuarioWithCorreoExists.id !== vendedor.usuarioId
+      ) {
         errors.push({
-          message: "El nombre de usuario ya está en uso.",
-          path: "username",
+          message: "El correo ya está en uso.",
+          path: "correo",
         });
       }
     }
 
     if (dni) {
-      const vendedorExists = await Vendedor.findOne({ where: { dni } });
-      if (vendedorExists && vendedorExists.id !== vendedor.id) {
+      const vendedorWithDNIExists = await Vendedor.findOne({ where: { dni } });
+      if (vendedorWithDNIExists && vendedorWithDNIExists.id !== vendedor.id) {
         errors.push({
           message: "El dni ya está en uso.",
           path: "dni",
@@ -130,9 +125,9 @@ class VendedorService {
     }
 
     const usuario = await Usuario.findByPk(vendedor.usuarioId);
-    await usuario.update({ nombre, username, password });
+    await usuario.update({ correo, contrasenia });
 
-    await vendedor.update({ dni, telefono, celular, correo });
+    await vendedor.update({ nombre, dni, celular, telefono });
 
     return vendedor;
   }

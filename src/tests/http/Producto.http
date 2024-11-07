@@ -1,6 +1,9 @@
 ### OBTENER TODOS LOS PRODUCTOS
 GET http://localhost:3000/api/productos
 
+### OBTENER TODOS LOS PRODUCTOS PUBLICOS
+GET http://localhost:3000/api/productos/public
+
 ### OBTENER PRODUCTO POR ID
 GET http://localhost:3000/api/productos/1
 

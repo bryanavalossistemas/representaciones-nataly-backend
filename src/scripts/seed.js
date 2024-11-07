@@ -26,9 +26,8 @@ const seedDatabase = async () => {
     ]);
     await Usuario.bulkCreate([
       {
-        nombre: "Bryan Avalos Loa y Pardo Jesus",
-        username: "administrador",
-        password: "administrador",
+        correo: "bryanavalossistemas@gmail.com",
+        contrasenia: "admin",
         rolId: 1,
       },
     ]);
