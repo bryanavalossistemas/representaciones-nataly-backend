@@ -1,77 +1,70 @@
-const { Marca } = require("@/models");
+const { Comprador, DireccionComprador } = require("@/models");
 
 class CompradorService {
-  async create({ nombre }) {
-    const marcaExiste = await Marca.findOne({
-      where: { nombre },
+  async getDireccionComprardorByUsuarioId({ usuarioId }) {
+    const comprador = await Comprador.findOne({ where: { usuarioId } });
+    if (!comprador) {
+      return comprador;
+    }
+    const direccionComprador = DireccionComprador.findOne({
+      where: { compradorId: comprador.id },
     });
-    if (marcaExiste) {
-      throw {
-        message: "Error de conflicto",
-        statusCode: 409,
-        errors: [
-          {
-            message: "El nombre ya está en uso.",
-            path: "nombre",
-          },
-        ],
-      };
+
+    return direccionComprador;
+  }
+
+  async createOrUpdateDireccionCompradorByUsuarioId({
+    usuarioId,
+    nombre,
+    apellido,
+    direccion,
+    celular,
+    distritoId,
+  }) {
+    const comprador = await Comprador.findOne({ where: { usuarioId } });
+    if (!comprador) {
+      return comprador;
     }
+    const direccionComprador = await DireccionComprador.findOne({
+      where: { compradorId: comprador.id },
+    });
 
-    return await Marca.create({ nombre });
-  }
-
-  async getAll() {
-    return await Marca.findAll();
-  }
-
-  async getById({ id }) {
-    const marca = await Marca.findByPk(id);
-    if (!marca) {
-      throw {
-        message: "Error de recurso no encontrado",
-        statusCode: 404,
-        errors: [
-          {
-            message: "Marca no encontrada.",
-            path: "id",
-          },
-        ],
-      };
-    }
-
-    return marca;
-  }
-
-  async update({ id, nombre }) {
-    const marca = await this.getById({ id });
-    if (nombre) {
-      const marcaExiste = await Marca.findOne({
-        where: { nombre },
+    if (direccionComprador) {
+      (await direccionComprador).update({
+        nombre,
+        apellido,
+        direccion,
+        celular,
+        distritoId,
       });
-
-      if (marcaExiste && marcaExiste.id !== marca.id) {
-        throw {
-          message: "Error de conflicto",
-          statusCode: 409,
-          errors: [
-            {
-              message: "El nombre ya está en uso.",
-              path: "nombre",
-            },
-          ],
-        };
-      }
+    } else {
+      await DireccionComprador.create({
+        nombre,
+        apellido,
+        direccion,
+        celular,
+        distritoId,
+        compradorId: comprador.id,
+      });
     }
 
-    return await marca.update({ nombre });
+    return direccionComprador;
   }
 
-  async delete({ id }) {
-    const marca = await this.getById({ id });
-    await marca.destroy();
+  async deleteDireccionCompradorByUsuarioId({ usuarioId }) {
+    const comprador = await Comprador.findOne({ where: { usuarioId } });
+    if (!comprador) {
+      return comprador;
+    }
+    const direccionComprador = DireccionComprador.findOne({
+      where: { compradorId: comprador.id },
+    });
 
-    return "Marca eliminada correctamente";
+    if (direccionComprador) {
+      (await direccionComprador).destroy();
+    }
+
+    return direccionComprador;
   }
 }
 

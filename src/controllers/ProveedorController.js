@@ -29,7 +29,10 @@ class ProveedorController {
   getById = asyncHandler(async (req, res) => {
     const { id } = req.params;
 
-    res.status(200).json(await proveedorService.getById({ id }));
+    return res.status(200).json({
+      success: true,
+      data: await proveedorService.getById({ id }),
+    });
   });
 
   update = asyncHandler(async (req, res) => {

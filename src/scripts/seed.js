@@ -9,6 +9,8 @@ const {
   Cliente,
   ImagenProducto,
   Producto,
+  Comprador,
+  Distrito,
 } = require("@/models");
 const colors = require("colors");
 
@@ -23,17 +25,39 @@ const seedDatabase = async () => {
       {
         nombre: "Vendedor",
       },
+      {
+        nombre: "Comprador",
+      },
     ]);
     await Usuario.bulkCreate([
       {
         correo: "bryanavalossistemas@gmail.com",
-        contrasenia: "admin",
+        contrasenia: "administrador",
         rolId: 1,
+      },
+      {
+        correo: "bryanavalos849@gmail.com",
+        contrasenia: "comprador",
+        rolId: 3,
       },
     ]);
     await Administrador.bulkCreate([
       {
         usuarioId: 1,
+      },
+    ]);
+    await Comprador.bulkCreate([
+      {
+        nombre: "Bryan",
+        usuarioId: 2,
+      },
+    ]);
+    await Distrito.bulkCreate([
+      {
+        nombre: "La Molina",
+      },
+      {
+        nombre: "Surco",
       },
     ]);
     await Categoria.bulkCreate([
@@ -111,12 +135,12 @@ const seedDatabase = async () => {
         publicId: "rn-system/cbktfjznnhsbtnfxnazp",
         productoId: 2,
       },
-			{
+      {
         url: "https://res.cloudinary.com/bryanavalossistemas/image/upload/v1730655238/rn-system/jqkzopsns8fjlldnrkww.webp",
         publicId: "rn-system/jqkzopsns8fjlldnrkww",
         productoId: 2,
       },
-			{
+      {
         url: "https://res.cloudinary.com/bryanavalossistemas/image/upload/v1730756412/rn-system/cbktfjznnhsbtnfxnazp.webp",
         publicId: "rn-system/cbktfjznnhsbtnfxnazp",
         productoId: 1,

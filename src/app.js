@@ -13,6 +13,7 @@ const compraRoutes = require("@/routes/CompraRoutes");
 const ventaRoutes = require("@/routes/VentaRoutes");
 const authRoutes = require("@/routes/AuthRoutes");
 const distritoRoutes = require("@/routes/DistritoRoutes");
+const compradorRoutes = require("@/routes/CompradorRoutes");
 
 const app = express();
 
@@ -38,6 +39,7 @@ app.use("/api/compras", compraRoutes);
 app.use("/api/ventas", ventaRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/distritos", distritoRoutes);
+app.use("/api/compradores", compradorRoutes);
 
 app.use(errorHandler);
 
