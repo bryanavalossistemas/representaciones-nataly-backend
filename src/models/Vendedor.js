@@ -11,10 +11,6 @@ const Vendedor = sequelize.define(
       autoIncrement: true,
       allowNull: false,
     },
-    nombre: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     dni: {
       type: DataTypes.STRING,
       allowNull: false,

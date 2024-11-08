@@ -31,13 +31,13 @@ class VendedorService {
     }
 
     const usuario = await Usuario.create({
+			nombre,
       correo,
       contrasenia,
       rolId: 2,
     });
 
     const vendedor = await Vendedor.create({
-      nombre,
       dni,
       celular,
       telefono,
@@ -125,9 +125,9 @@ class VendedorService {
     }
 
     const usuario = await Usuario.findByPk(vendedor.usuarioId);
-    await usuario.update({ correo, contrasenia });
+    await usuario.update({ nombre, correo, contrasenia });
 
-    await vendedor.update({ nombre, dni, celular, telefono });
+    await vendedor.update({ dni, celular, telefono });
 
     return vendedor;
   }

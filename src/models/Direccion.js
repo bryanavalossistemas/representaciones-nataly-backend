@@ -1,10 +1,10 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("@/config/db");
-const Comprador = require("./Comprador");
 const Distrito = require("./Distrito");
+const Usuario = require("./Usuario");
 
-const DireccionComprador = sequelize.define(
-  "DireccionComprador",
+const Direccion = sequelize.define(
+  "Direccion",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -36,11 +36,11 @@ const DireccionComprador = sequelize.define(
         key: "id",
       },
     },
-    compradorId: {
+    usuarioId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: Comprador,
+        model: Usuario,
         key: "id",
       },
     },
@@ -54,4 +54,4 @@ const DireccionComprador = sequelize.define(
   }
 );
 
-module.exports = DireccionComprador;
+module.exports = Direccion;

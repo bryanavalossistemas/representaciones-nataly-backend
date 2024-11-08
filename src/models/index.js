@@ -3,7 +3,7 @@ const Usuario = require("@/models/Usuario");
 const Administrador = require("@/models/Administrador");
 const Vendedor = require("@/models/Vendedor");
 const Comprador = require("@/models/Comprador");
-const DireccionComprador = require("@/models/DireccionComprador");
+const Direccion = require("@/models/Direccion");
 const Distrito = require("@/models/Distrito");
 const Cliente = require("@/models/Cliente");
 const Proveedor = require("@/models/Proveedor");
@@ -59,22 +59,22 @@ Comprador.belongsTo(Usuario, {
   foreignKey: "usuarioId",
 });
 
-Comprador.hasOne(DireccionComprador, {
-  as: "direccionComprador",
-  foreignKey: "compradorId",
+Usuario.hasOne(Direccion, {
+  as: "direccion",
+  foreignKey: "usuarioId",
   onDelete: "CASCADE",
 });
-DireccionComprador.belongsTo(Comprador, {
+Direccion.belongsTo(Usuario, {
   as: "usuario",
-  foreignKey: "compradorId",
+  foreignKey: "usuarioId",
 });
 
-Distrito.hasMany(DireccionComprador, {
-  as: "direccionesComprador",
+Distrito.hasMany(Direccion, {
+  as: "direcciones",
   foreignKey: "distritoId",
   onDelete: "RESTRICT",
 });
-DireccionComprador.belongsTo(Distrito, {
+Direccion.belongsTo(Distrito, {
   as: "distrito",
   foreignKey: "distritoId",
 });
@@ -171,12 +171,12 @@ Cliente.hasMany(Venta, {
 });
 Venta.belongsTo(Cliente, { as: "cliente", foreignKey: "clienteId" });
 
-Comprador.hasMany(Orden, {
+Usuario.hasMany(Orden, {
   as: "ordenes",
-  foreignKey: "compradorId",
+  foreignKey: "usuarioId",
   onDelete: "SET NULL",
 });
-Orden.belongsTo(Comprador, { as: "comprador", foreignKey: "compradorId" });
+Orden.belongsTo(Usuario, { as: "usuarios", foreignKey: "usuarioId" });
 
 module.exports = {
   Rol,
@@ -184,7 +184,7 @@ module.exports = {
   Administrador,
   Vendedor,
   Comprador,
-  DireccionComprador,
+  Direccion,
   Distrito,
   Cliente,
   Proveedor,

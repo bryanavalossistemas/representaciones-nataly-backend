@@ -11,10 +11,6 @@ const Comprador = sequelize.define(
       autoIncrement: true,
       allowNull: false,
     },
-    nombre: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     usuarioId: {
       type: DataTypes.INTEGER,
       allowNull: false,

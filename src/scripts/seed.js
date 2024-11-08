@@ -31,11 +31,13 @@ const seedDatabase = async () => {
     ]);
     await Usuario.bulkCreate([
       {
+        nombre: "Bryan Avalos Loa y pardo Administrador",
         correo: "bryanavalossistemas@gmail.com",
         contrasenia: "administrador",
         rolId: 1,
       },
       {
+        nombre: "Bryan Avalos Loa y pardo Comprador",
         correo: "bryanavalos849@gmail.com",
         contrasenia: "comprador",
         rolId: 3,
@@ -48,17 +50,60 @@ const seedDatabase = async () => {
     ]);
     await Comprador.bulkCreate([
       {
-        nombre: "Bryan",
         usuarioId: 2,
       },
     ]);
     await Distrito.bulkCreate([
-      {
-        nombre: "La Molina",
-      },
-      {
-        nombre: "Surco",
-      },
+      { nombre: "Lima" },
+      { nombre: "Ancón" },
+      { nombre: "Ate Vitarte" },
+      { nombre: "Barranco" },
+      { nombre: "Breña" },
+      { nombre: "Carabayllo" },
+      { nombre: "Chaclacayo" },
+      { nombre: "Chorrillos" },
+      { nombre: "Cieneguilla" },
+      { nombre: "Comas" },
+      { nombre: "El Agustino" },
+      { nombre: "Independencia" },
+      { nombre: "Jesús María" },
+      { nombre: "La Molina" },
+      { nombre: "La Victoria" },
+      { nombre: "Lince" },
+      { nombre: "Los Olivos" },
+      { nombre: "Lurigancho" },
+      { nombre: "Lurín" },
+      { nombre: "Magdalena del Mar" },
+      { nombre: "Miraflores" },
+      { nombre: "Pachacamac" },
+      { nombre: "Pucusana" },
+      { nombre: "Pueblo Libre" },
+      { nombre: "Puente Piedra" },
+      { nombre: "Punta Hermosa" },
+      { nombre: "Punta Negra" },
+      { nombre: "Rímac" },
+      { nombre: "San Bartolo" },
+      { nombre: "San Borja" },
+      { nombre: "San Isidro" },
+      { nombre: "San Juan de Lurigancho" },
+      { nombre: "San Juan de Miraflores" },
+      { nombre: "San Luis" },
+      { nombre: "San Martín de Porres" },
+      { nombre: "San Miguel" },
+      { nombre: "Santa Anita" },
+      { nombre: "Santa María del Mar" },
+      { nombre: "Santa Rosa" },
+      { nombre: "Surquillo" },
+      { nombre: "Villa El Salvador" },
+      { nombre: "Villa María del Triunfo" },
+      { nombre: "Callao" },
+      { nombre: "Bellavista" },
+      { nombre: "Carmen de la Legua Reynoso" },
+      { nombre: "La Perla" },
+      { nombre: "La Punta" },
+      { nombre: "Mi Perú" },
+      { nombre: "San Martín" },
+      { nombre: "Ventanilla" },
     ]);
     await Categoria.bulkCreate([
       {

@@ -1,6 +1,6 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("@/config/db");
-const Comprador = require("./Comprador");
+const Usuario = require("./Usuario");
 
 const Orden = sequelize.define(
   "Orden",
@@ -43,15 +43,15 @@ const Orden = sequelize.define(
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    nombreComprador: {
+    nombreUsuario: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    compradorId: {
+    usuarioId: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
-        model: Comprador,
+        model: Usuario,
         key: "id",
       },
     },
