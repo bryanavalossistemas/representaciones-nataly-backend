@@ -5,6 +5,8 @@ class AuthController {
   login = asyncHandler(async (req, res) => {
     const { correo, contrasenia } = req.body;
 
+    console.log(req.body);
+
     return res.status(200).json({
       success: true,
       token: await authService.login({ correo, contrasenia }),

@@ -79,6 +79,16 @@ Direccion.belongsTo(Distrito, {
   foreignKey: "distritoId",
 });
 
+Distrito.hasMany(DireccionOrden, {
+  as: "direccionesOrdenes",
+  foreignKey: "distritoId",
+  onDelete: "RESTRICT",
+});
+DireccionOrden.belongsTo(Distrito, {
+  as: "distrito",
+  foreignKey: "distritoId",
+});
+
 Orden.hasOne(DireccionOrden, {
   as: "direccionOrden",
   foreignKey: "ordenId",
@@ -88,6 +98,13 @@ DireccionOrden.belongsTo(Orden, {
   as: "orden",
   foreignKey: "ordenId",
 });
+
+Producto.hasMany(DetalleOrden, {
+  as: "detallesOrden",
+  foreignKey: "productoId",
+  onDelete: "SET NULL",
+});
+DetalleOrden.belongsTo(Producto, { as: "producto", foreignKey: "productoId" });
 
 Orden.hasMany(DetalleOrden, {
   as: "detallesOrden",

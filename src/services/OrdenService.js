@@ -1,5 +1,12 @@
 const { IGV } = require("@/config/constants");
-const { Producto, Orden, DetalleOrden, DireccionOrden } = require("@/models");
+const {
+  Producto,
+  Orden,
+  DetalleOrden,
+  DireccionOrden,
+  ImagenProducto,
+  Distrito,
+} = require("@/models");
 
 class OrdenService {
   async create({
@@ -37,7 +44,7 @@ class OrdenService {
     const subtotal = total / (1 + IGV);
     const igv = subtotal * IGV;
 
-    const orden = Orden.create({
+    const orden = await Orden.create({
       fecha: new Date(),
       total,
       igv,
@@ -47,7 +54,7 @@ class OrdenService {
       usuarioId: usuario.id,
     });
 
-    DireccionOrden.create({
+    await DireccionOrden.create({
       nombre,
       apellido,
       direccion,
@@ -81,6 +88,53 @@ class OrdenService {
         });
       })
     );
+
+    return orden;
+  }
+
+  async getAllByUsuarioId({ usuarioId }) {
+    const ordenes = await Orden.findAll({
+      where: { usuarioId },
+      include: [{ model: DireccionOrden, as: "direccionOrden" }],
+    });
+
+    return ordenes;
+  }
+
+  async getById({ id }) {
+    const orden = await Orden.findByPk(id, {
+      include: [
+        {
+          model: DireccionOrden,
+          as: "direccionOrden",
+          include: [{ model: Distrito, as: "distrito" }],
+        },
+        {
+          model: DetalleOrden,
+          as: "detallesOrden",
+          include: [
+            {
+              model: Producto,
+              as: "producto",
+              include: [{ model: ImagenProducto, as: "imagenesProducto" }],
+            },
+          ],
+        },
+      ],
+    });
+
+    if (!orden) {
+      throw {
+        message: "Error de recurso no encontrado",
+        statusCode: 404,
+        errors: [
+          {
+            message: "Categoría no encontrada.",
+            path: "id",
+          },
+        ],
+      };
+    }
 
     return orden;
   }

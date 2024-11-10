@@ -6,10 +6,6 @@ class OrdenController {
     const { nombre, apellido, celular, direccion, distritoId, detallesOrden } =
       req.body;
 
-    console.log(req.body);
-
-    return res.status(201);
-
     return res.status(201).json({
       success: true,
       data: await ordenService.create({
@@ -21,6 +17,22 @@ class OrdenController {
         distritoId,
         detallesOrden,
       }),
+    });
+  });
+
+  getAllByUsuarioId = asyncHandler(async (req, res) => {
+    return res.status(200).json({
+      success: true,
+      data: await ordenService.getAllByUsuarioId({ usuarioId: req.usuario.id }),
+    });
+  });
+
+  getById = asyncHandler(async (req, res) => {
+    const { id } = req.params;
+
+    return res.status(200).json({
+      success: true,
+      data: await ordenService.getById({ id }),
     });
   });
 }
