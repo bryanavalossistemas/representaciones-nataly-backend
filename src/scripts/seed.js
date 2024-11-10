@@ -55,7 +55,7 @@ const seedDatabase = async () => {
     ]);
     await Distrito.bulkCreate([
       { nombre: "Lima" },
-      { nombre: "Ancón" },
+      { nombre: "Callao" },
       { nombre: "Ate Vitarte" },
       { nombre: "Barranco" },
       { nombre: "Breña" },
@@ -71,7 +71,6 @@ const seedDatabase = async () => {
       { nombre: "La Victoria" },
       { nombre: "Lince" },
       { nombre: "Los Olivos" },
-      { nombre: "Lurigancho" },
       { nombre: "Lurín" },
       { nombre: "Magdalena del Mar" },
       { nombre: "Miraflores" },
@@ -96,14 +95,7 @@ const seedDatabase = async () => {
       { nombre: "Surquillo" },
       { nombre: "Villa El Salvador" },
       { nombre: "Villa María del Triunfo" },
-      { nombre: "Callao" },
-      { nombre: "Bellavista" },
-      { nombre: "Carmen de la Legua Reynoso" },
-      { nombre: "La Perla" },
-      { nombre: "La Punta" },
-      { nombre: "Mi Perú" },
-      { nombre: "San Martín" },
-      { nombre: "Ventanilla" },
+      { nombre: "Ancón" },
     ]);
     await Categoria.bulkCreate([
       {
