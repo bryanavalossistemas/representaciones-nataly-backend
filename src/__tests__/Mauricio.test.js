@@ -8,7 +8,7 @@ describe("Descripcion: Este test sirve para verificar el endpoint PUT /api/usuar
       apellido: "Ramirez",
       direccion: "Avenida Canada 121",
       celular: "91231244",
-      distritoId: 44,
+      distritoId: 1,
     };
 
     const response = await request(app)
@@ -23,7 +23,7 @@ describe("Descripcion: Este test sirve para verificar el endpoint PUT /api/usuar
       apellido: "Ramirez",
       direccion: "Avenida Canada 121",
       celular: "91231244",
-      distritoId: 44,
+      distritoId: 1,
       usuarioId: 1,
     });
 

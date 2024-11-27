@@ -23,6 +23,8 @@ class AuthController {
   google = asyncHandler(async (req, res) => {
     const { googleToken } = req.body;
 
+    console.log(googleToken);
+
     return res.status(200).json({
       success: true,
       token: await authService.google({ googleToken }),
