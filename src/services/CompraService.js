@@ -3,6 +3,7 @@ const { Proveedor, Compra, Producto, DetalleCompra } = require("@/models");
 class CompraService {
   async create({ proveedorId, detallesCompra }) {
     const proveedor = await Proveedor.findByPk(proveedorId);
+
     if (!proveedor) {
       throw {
         message: "Error de recurso no encontrado",
@@ -15,6 +16,7 @@ class CompraService {
         ],
       };
     }
+
     const total = detallesCompra.reduce(
       (total, detalleCompra) =>
         total + detalleCompra.cantidad * detalleCompra.precioCosto,
@@ -27,10 +29,12 @@ class CompraService {
       nombreProveedor: proveedor.nombre,
       proveedorId: proveedor.id,
     });
+
     for (let index = 0; index < detallesCompra.length; index++) {
       const producto = await Producto.findByPk(
         detallesCompra[index].productoId
       );
+
       if (!producto) {
         throw {
           message: "Error de recurso no encontrado",
@@ -43,6 +47,7 @@ class CompraService {
           ],
         };
       }
+
       await DetalleCompra.create({
         cantidad: detallesCompra[index].cantidad,
         precioCosto: detallesCompra[index].precioCosto,
@@ -50,11 +55,14 @@ class CompraService {
         productoId: producto.id,
         compraId: compra.id,
       });
+
       const nuevoStock = producto.stock + detallesCompra[index].cantidad;
+
       const nuevoPrecioCosto =
         (detallesCompra[index].precioCosto * detallesCompra[index].cantidad +
           producto.precioCosto * producto.stock) /
         (detallesCompra[index].cantidad + producto.stock);
+
       await producto.update({
         stock: nuevoStock,
         precioCosto: nuevoPrecioCosto,

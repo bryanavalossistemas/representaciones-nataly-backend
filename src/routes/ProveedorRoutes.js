@@ -11,7 +11,7 @@ const authorize = require("@/middlewares/authorizeMiddleware");
 
 const router = express.Router();
 
-router.use(authenticate, authorize({ rolesId: [1] }));
+// router.use(authenticate, authorize({ rolesId: [1] }));
 
 router
   .route("/")

@@ -15,10 +15,10 @@ Content-Type: application/json
 GET http://localhost:3000/api/proveedores
 
 ### OBTENER PROVEEDOR POR ID
-GET http://localhost:3000/api/proveedores/1
+GET http://localhost:4000/api/proveedores/1
 
 ### ACTUALIZAR PROVEEDOR POR ID
-PUT http://localhost:3000/api/proveedores/1
+PUT http://localhost:4000/api/proveedores/1
 Content-Type: application/json
 
 {

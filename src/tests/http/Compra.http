@@ -1,5 +1,5 @@
 ### CREAR COMPRA
-POST http://localhost:3000/api/compras
+POST http://localhost:4000/api/compras
 Content-Type: application/json
 
 {
