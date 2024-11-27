@@ -15,6 +15,21 @@ class DireccionService {
     celular,
     distritoId,
   }) {
+    const nombresFinded = /\d/; 
+    if (nombresFinded.test(nombre) || nombresFinded.test(apellido)) {
+      throw {
+      message: "El nombre o apellido no deben contener ningun numero.",
+      statusCode: 404,
+      };
+    }
+    const celularFinded = /^\d{9}$/;
+    if (!celularFinded.test(celular)) {
+      throw {
+        message: "El numero debe tener 9 digitos exactos.",
+        statusCode: 404,
+      };
+    }
+
     const distritoFinded = await Distrito.findOne({
       where: { id: distritoId },
     });
