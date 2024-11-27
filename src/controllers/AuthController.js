@@ -2,14 +2,30 @@ const asyncHandler = require("@/middlewares/asyncHandlerMiddleware");
 const authService = require("@/services/AuthService");
 
 class AuthController {
+  signup = asyncHandler(async (req, res) => {
+    const { nombre, correo, contrasenia } = req.body;
+
+    return res.status(201).json({
+      success: true,
+      token: await authService.signup({ nombre, correo, contrasenia }),
+    });
+  });
+
   login = asyncHandler(async (req, res) => {
     const { correo, contrasenia } = req.body;
-
-    console.log(req.body);
 
     return res.status(200).json({
       success: true,
       token: await authService.login({ correo, contrasenia }),
+    });
+  });
+
+  google = asyncHandler(async (req, res) => {
+    const { googleToken } = req.body;
+
+    return res.status(200).json({
+      success: true,
+      token: await authService.google({ googleToken }),
     });
   });
 

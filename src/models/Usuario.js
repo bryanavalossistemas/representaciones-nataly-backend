@@ -21,8 +21,13 @@ const Usuario = sequelize.define(
     },
     contrasenia: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
+		googleId: {
+			type: DataTypes.STRING,
+			unique: true,
+			allowNull: true,
+		},
     rolId: {
       type: DataTypes.INTEGER,
       allowNull: false,

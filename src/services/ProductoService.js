@@ -1,5 +1,12 @@
-const { Producto, ImagenProducto, Categoria, Marca } = require("@/models");
+const {
+  Producto,
+  ImagenProducto,
+  Categoria,
+  Marca,
+  DetalleVenta,
+} = require("@/models");
 const cloudinaryService = require("@/services/CloudinaryService");
+const sequelize = require("sequelize");
 
 class ProductoService {
   async create({
@@ -98,6 +105,25 @@ class ProductoService {
         { model: Marca, as: "marca" },
         { model: ImagenProducto, as: "imagenesProducto" },
       ],
+    });
+  }
+
+  async getAllMasVendidos() {
+    return await DetalleVenta.findAll({
+      attributes: [
+        "productoId",
+        [sequelize.fn("SUM", sequelize.col("cantidad")), "totalVendido"],
+      ],
+      include: [
+        {
+          attributes: ["nombre"], // Atributos del producto que deseas mostrar
+          model: Producto,
+          as: "producto",
+        },
+      ],
+      group: ["productoId", "producto.id"],
+      order: [[sequelize.literal("SUM(cantidad)"), "DESC"]],
+      limit: 5,
     });
   }
 

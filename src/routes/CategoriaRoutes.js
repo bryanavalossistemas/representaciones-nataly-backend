@@ -15,7 +15,7 @@ router.route("/public").get(categoriaController.getAll);
 
 router.route("/:id/public").get(validateId, categoriaController.getByIdPublic);
 
-router.use(authenticate, authorize({ rolesId: [1] }));
+// router.use(authenticate, authorize({ rolesId: [1] }));
 
 router
   .route("/")

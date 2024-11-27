@@ -32,13 +32,13 @@ const seedDatabase = async () => {
     await Usuario.bulkCreate([
       {
         nombre: "Bryan Avalos Loa y pardo Administrador",
-        correo: "bryanavalossistemas@gmail.com",
-        contrasenia: "administrador",
+        correo: "admin@admin.com",
+        contrasenia: "admin",
         rolId: 1,
       },
       {
         nombre: "Bryan Avalos Loa y pardo Comprador",
-        correo: "bryanavalos849@gmail.com",
+        correo: "comprador@comprador.com",
         contrasenia: "comprador",
         rolId: 3,
       },

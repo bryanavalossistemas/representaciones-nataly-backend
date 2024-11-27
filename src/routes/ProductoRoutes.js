@@ -22,6 +22,7 @@ router.use(authenticate, authorize({ rolesId: [1] }));
 router
   .route("/")
   .get(productoController.getAll)
+  .get(productoController.getAllMasVendidos)
   .post(
     upload.array("imagenes", 10),
     createValidation,
@@ -29,6 +30,8 @@ router
     imagesExists,
     productoController.create
   );
+
+router.route("/masVendidos").get(productoController.getAllMasVendidos);
 
 router
   .route("/:id")

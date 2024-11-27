@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "node --watch -r dotenv/config -r module-alias/register src/index.js",
     "db:seed": "node -r dotenv/config -r module-alias/register src/scripts/seed.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "node -r module-alias/register src/index.js"
   },
   "_moduleAliases": {
@@ -40,16 +40,19 @@
     "cors": "^2.8.5",
     "express": "^4.21.0",
     "express-validator": "^7.2.0",
+    "google-auth-library": "^9.14.2",
     "jsonwebtoken": "^9.0.2",
     "module-alias": "^2.2.3",
     "multer": "^1.4.5-lts.1",
     "pdfkit": "^0.15.1",
     "pg": "^8.13.0",
-		"sequelize": "^5.22.5"
+    "sequelize": "^5.22.5"
   },
   "devDependencies": {
     "colors": "^1.4.0",
     "dotenv": "^16.4.5",
-    "morgan": "^1.10.0"
+    "jest": "^29.7.0",
+    "morgan": "^1.10.0",
+    "supertest": "^7.0.0"
   }
 }
