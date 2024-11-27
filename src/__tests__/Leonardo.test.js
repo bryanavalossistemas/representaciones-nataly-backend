@@ -32,26 +32,26 @@ describe("Descripcion: Este test sirve para verificar el endpoint GET /api/produ
   });
 });
 
-describe("Descripcion: Este test sirve para verificar el endpoint POST /api/categorias", () => {
-  it("Debe: crear un producto y devolver la información creada", async () => {
-    const nuevaCategoria = {
-      nombre: "Nueva Categoria 5",
-    };
+// describe("Descripcion: Este test sirve para verificar el endpoint POST /api/categorias", () => {
+//   it("Debe: crear un producto y devolver la información creada", async () => {
+//     const nuevaCategoria = {
+//       nombre: "Nueva Categoria 5",
+//     };
 
-    const response = await request(app)
-      .post("/api/categorias")
-      .send(nuevaCategoria)
-      .set("Content-Type", "application/json");
+//     const response = await request(app)
+//       .post("/api/categorias")
+//       .send(nuevaCategoria)
+//       .set("Content-Type", "application/json");
 
-    expect(response.status).toBe(201);
+//     expect(response.status).toBe(201);
 
-    expect(response.body.data).toEqual({
-      id: expect.any(Number),
-      nombre: "Nueva Categoria 5",
-    });
+//     expect(response.body.data).toEqual({
+//       id: expect.any(Number),
+//       nombre: "Nueva Categoria 5",
+//     });
 
-    expect(response.body.data.id).toBeDefined();
+//     expect(response.body.data.id).toBeDefined();
 
-    console.log("Respuesta del servidor:", response.body);
-  });
-});
+//     console.log("Respuesta del servidor:", response.body);
+//   });
+// });

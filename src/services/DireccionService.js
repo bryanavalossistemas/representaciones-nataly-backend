@@ -1,4 +1,4 @@
-const { Direccion } = require("@/models");
+const { Direccion, Distrito } = require("@/models");
 
 class DireccionService {
   async getDireccionByUsuarioId({ usuarioId }) {
@@ -15,6 +15,17 @@ class DireccionService {
     celular,
     distritoId,
   }) {
+    const distritoFinded = await Distrito.findOne({
+      where: { id: distritoId },
+    });
+
+    if (!distritoFinded) {
+      throw {
+        message: "Error de distrito no encontrado",
+        statusCode: 404,
+      };
+    }
+
     const direccionFinded = await Direccion.findOne({ where: { usuarioId } });
 
     if (direccionFinded) {
@@ -40,7 +51,7 @@ class DireccionService {
   }
 
   async deleteDireccionByUsuarioId({ usuarioId }) {
-    const direccion = Direccion.findOne({ where: { usuarioId } });
+    const direccion = await Direccion.findOne({ where: { usuarioId } });
 
     if (direccion) {
       (await direccion).destroy();

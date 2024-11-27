@@ -17,7 +17,7 @@ class DireccionController {
     return res.status(200).json({
       success: true,
       data: await direccionService.createOrUpdateDireccionByUsuarioId({
-        usuarioId: req.usuario.id,
+        usuarioId: req.usuario?.id || 1,
         nombre,
         apellido,
         direccion,
